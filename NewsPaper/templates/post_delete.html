@@ -1,0 +1,29 @@
+{% extends 'flatpages/default.html' %}
+
+{% block title %}
+    News detail
+{% endblock title %}
+
+{% block content %}
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <h2 class="card-title">{{ post.heading }}</h2>
+                <p class="card-text">{{ post.text }}</p>
+        </div>
+        <div class="card-footer text-muted">
+            Posted on {{ post.data_time }}<br>
+            Author: {{ post.author }}<br>
+            Categories: {% for category in post.categories.all %}
+                            {{ category }}
+                        {% endfor %}
+            <br>
+            Rating: {{ post.rating }}
+        </div>
+    </div>
+
+    <form method="POST">
+        {% csrf_token %}
+    <input type="submit" value="Подтвердить" class="btn btn-primary"></form>
+
+{% endblock content %}
